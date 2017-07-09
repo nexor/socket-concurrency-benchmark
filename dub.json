@@ -1,0 +1,9 @@
+{
+	"name": "webserver-concurrency-benchmark",
+	"authors": [
+		"Pavel Chebotarev"
+	],
+	"description": "Simple webserver concurrency benchmark",
+	"copyright": "Copyright © 2017, Pavel Chebotarev",
+	"license": "MIT"
+}
