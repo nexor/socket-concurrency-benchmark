@@ -7,6 +7,7 @@ immutable ushort defaultPort = 1085;
 immutable uint   defaultBacklog = 10;
 
 enum ProcessType {
+    none,
     thread,
     fiber,
     select
@@ -15,7 +16,7 @@ enum ProcessType {
 ushort port = defaultPort;
 string address = defaultAddress;
 uint   backlog = defaultBacklog;
-ProcessType type;
+ProcessType type = ProcessType.none;
 
 byte   verbosity; // log verbosity level
 bool   ver;
@@ -76,6 +77,8 @@ void startBenchmark(string addr, ushort port, ProcessType type)
         case ProcessType.select:
             tester = new SelectBenchmark(address);
             break;
+        case ProcessType.none:
+            throw new Exception("benchmark type must be set");
     }
 
     writefln("Benchmark type: %s", type);
@@ -108,7 +111,7 @@ bool processHelpInformation(string[] args)
         return true;
     }
 
-    if (helpInformation.helpWanted || type == ProcessType.init) {
+    if (helpInformation.helpWanted || type == ProcessType.none) {
         defaultGetoptPrinter(helpString, helpInformation.options);
         return true;
     }
