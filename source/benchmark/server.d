@@ -22,7 +22,6 @@ class Server
         Socket start()
         {
             serverSocket = new TcpSocket;
-            assert(serverSocket.isAlive);
             serverSocket.bind(listenAddress);
             serverSocket.listen(backlog);
             writeln("Listening on " ~ listenAddress.toString());

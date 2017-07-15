@@ -15,7 +15,7 @@ enum ProcessType {
 ushort port = defaultPort;
 string address = defaultAddress;
 uint   backlog = defaultBacklog;
-ProcessType type = ProcessType.thread;
+ProcessType type = ProcessType.fiber;
 
 byte   verbosity; // log verbosity level
 bool   ver;
