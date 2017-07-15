@@ -15,7 +15,7 @@ enum ProcessType {
 ushort port = defaultPort;
 string address = defaultAddress;
 uint   backlog = defaultBacklog;
-ProcessType type = ProcessType.fiber;
+ProcessType type;
 
 byte   verbosity; // log verbosity level
 bool   ver;
@@ -86,9 +86,9 @@ void startBenchmark(string addr, ushort port, ProcessType type)
 
 bool processHelpInformation(string[] args)
 {
-    import std.conv;
+    import std.conv, std.file, std.path;
     const string helpString = "Concurrent sockets reading/writing benchmark version " ~ versionString ~ ".\n\n" ~
-        "Usage: benchmark [OPTIONS]";
+        "Usage: " ~ thisExePath().relativePath() ~ " [OPTIONS]";
 
     auto helpInformation = getopt(args,
         std.getopt.config.caseSensitive,
@@ -108,7 +108,7 @@ bool processHelpInformation(string[] args)
         return true;
     }
 
-    if (helpInformation.helpWanted) {
+    if (helpInformation.helpWanted || type == ProcessType.init) {
         defaultGetoptPrinter(helpString, helpInformation.options);
         return true;
     }
