@@ -1,5 +1,32 @@
 # Socket concurrency benchmark
 
+This is a simple benchmark of three different socket concurrency implementations: thread, socket select loop and fiber.
+
+## Install
+
+You can clone the repo and build project using `dub` following three simple commands:
+```
+$ git clone https://github.com/nexor/socket-concurrency-benchmark.git
+$ cd socket-concurrency-benchmark
+$ dub build
+```
+
+Run program without any options to see help text:
+```
+$ ./socket-concurrency-benchmark
+Concurrent sockets reading/writing benchmark version 0.0.1.
+
+Usage: socket-concurrency-benchmark [OPTIONS]
+   --address [IP address] Address to connect to for data receiving (127.0.0.1 by default).
+      --port [1..65535] Port number to connect to (1085 by default).
+      --type [thread|fiber|select] socket handling concurrency type.
+   --backlog [uint] Server socket backlog size (10 by default).
+-V --version Print version and exit.
+-v --verbose [0..3] Use verbose output level. Available levels: 0(default, least verbose), 1, 2, 3(most verbose).
+-h    --help This help information.
+```
+
+
 ## Benchmark result example
 
 All benchmarks was performed by following line:
